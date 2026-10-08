@@ -83,6 +83,18 @@ app.post(
   }),
 );
 
+app.get(
+  "/api/auth/me",
+  auth(),
+  wrap(async (req, res) => {
+    const u = await User.findById(req.user.id);
+    if (!u) return res.status(401).json({ error: "Please log in" });
+    if (u.suspended)
+      return res.status(403).json({ error: "This account has been suspended" });
+    res.json(pub(u));
+  }),
+);
+
 // ---- Public: marketplace + traceability
 app.get(
   "/api/listings",
