@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node --watch server.js",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "seed": "node seed.js"
   },
   "dependencies": {
